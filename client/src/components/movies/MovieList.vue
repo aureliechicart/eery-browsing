@@ -17,22 +17,13 @@
 </template>
 
 <script>
-import films_one from '../../data/films_1.json'
-import films_two from '../../data/films_2.json'
-import films_three from '../../data/films_3.json'
-import films_four from '../../data/films_4.json'
-import films_five from '../../data/films_5.json'
 
 export default {
+  props: {
+    films: Object
+  },
   data() {
     return {
-      currentPage: 1,
-      films: films_one,
-      films_one: films_one,
-      films_two: films_two,
-      films_three: films_three,
-      films_four: films_four,
-      films_five: films_five,
       img_prefix: 'http://image.tmdb.org/t/p/w154/',
     }
   },

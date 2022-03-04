@@ -1,3 +1,5 @@
+/** Credit: https://www.digitalocean.com/community/tutorials/vuejs-vue-pagination-component */
+
 <template>
   <ul class="pagination">
     <li class="pagination__item">
