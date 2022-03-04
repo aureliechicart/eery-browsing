@@ -14,15 +14,10 @@
 <style lang="scss" scoped>
 .footer {
   background-color: $grey;
-  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70px;
-  width: 100%;
-  position: fixed;
-  left: 0;
-  bottom: 0;
+  padding-top: 0.5rem;
 
   &__source {
     margin-right: 1rem;

@@ -29,7 +29,6 @@ export default {
 
 html {
   font-family: "Heebo", sans-serif;
-  background: linear-gradient($grey, $dark);
 }
 
 body {

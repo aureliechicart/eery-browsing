@@ -69,9 +69,9 @@ header {
         a:active,
         a:hover,
         a.router-link-active {
-          border: 1px solid $dark;
-          background-color: $light;
-          color: $dark;
+          border: 1px solid $secondary;
+          background-color: $light-sec;
+          color: $secondary;
         }
       }
     }
