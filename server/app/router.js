@@ -6,7 +6,7 @@ const fetch = require('node-fetch')
 
 const router = Router();
 
-// route to get all trhillers from moviedb sorted by popularity
+// route to get all thrillers from moviedb sorted by popularity
 // A page number can be specified as query string, example : ?page=3
 router.get('/thrillers', async function (req, res) {
   try {
@@ -21,8 +21,8 @@ router.get('/thrillers', async function (req, res) {
         message: response.statusText
       });
     } else {
-      const films = await response.json();
-      res.status(200).json(films);
+      const movies = await response.json();
+      res.status(200).json(movies);
     }
 
   } catch (error) {
