@@ -1,8 +1,8 @@
 <template>
-  <section class="films">
-    <h1 class="films__heading">Pagination</h1>
+  <section class="movies">
+    <h1 class="movies__heading">Pagination</h1>
 
-    <MovieList :films="loadedFilms" />
+    <MovieList :movies="loadedMovies" />
     <ThePagination
       :totalPages="5"
       :perPage="20"
@@ -12,11 +12,6 @@
 </template>
 
 <script>
-// import films_one from '../../data/films_1.json'
-// import films_two from '../../data/films_2.json'
-// import films_three from '../../data/films_3.json'
-// import films_four from '../../data/films_4.json'
-// import films_five from '../../data/films_5.json'
 
 import axios from 'axios'
 
@@ -31,7 +26,7 @@ export default {
   data() {
     return {
       currentPage: 1,
-      loadedFilms: { results: [] },
+      loadedMovies: { results: [] },
     }
   },
   methods: {
@@ -39,7 +34,7 @@ export default {
       axios
         .get(`/api/thrillers?page=${this.currentPage}`)
         .then((response) => {
-          this.loadedFilms = response.data
+          this.loadedMovies = response.data
         })
         .catch((error) => console.log(error))
     },
@@ -60,7 +55,7 @@ export default {
 
 
 <style lang="scss" scoped>
-.films {
+.movies {
   margin: 0 auto;
   background: linear-gradient($grey, $secondary);
 

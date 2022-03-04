@@ -2,20 +2,16 @@
   <section class="infinite">
     <h1 class="infinite__heading">Infinite Scroll</h1>
 
-    <MovieList />
-    <!-- when the intersect event is triggered, we load the next round of films -->
-    <IntersectionObserver @intersect="loadFilms(this.page)" />
+    <MovieList :movies="loadedMovies" />
+    <!-- when the intersect event is triggered, we load the next round of movies -->
+    <IntersectionObserver @intersect="loadMoreMovies" />
     <div v-if="endOfList" class="end-message">Fin de la liste</div>
   </section>
 </template>
 
 
 <script>
-import films_1 from '../../data/films_1.json'
-import films_2 from '../../data/films_2.json'
-import films_3 from '../../data/films_3.json'
-import films_4 from '../../data/films_4.json'
-import films_5 from '../../data/films_5.json'
+import axios from 'axios'
 
 import MovieList from '../../components/movies/MovieList.vue'
 import IntersectionObserver from '../../components/infinite/IntersectionObserver.vue'
@@ -27,30 +23,35 @@ export default {
   },
   data() {
     return {
-      films_list: [
-        { id: 0, films: films_1 },
-        { id: 1, films: films_2 },
-        { id: 2, films: films_3 },
-        { id: 3, films: films_4 },
-        { id: 4, films: films_5 },
-      ],
-      films: { results: [] },
-      page: 0,
+      loadedMovies: { results: [] },
+      currentPage: 0,
       endOfList: false,
-      img_prefix: 'http://image.tmdb.org/t/p/w154/',
     }
   },
   methods: {
-    loadFilms(page) {
-      if (!this.films_list[page]) {
-        // if there is no more movies to load, we display a message and we exit the function
-        this.endOfList = true
-        return
-      }
-      const newFilms = this.films_list[page].films.results
-      this.films.results.push(...newFilms)
-      this.page++
+    loadMovies() {
+      axios
+        .get(`/api/thrillers?page=1`)
+        .then((response) => {
+          this.loadedMovies = response.data
+        })
+        .catch((error) => console.log(error))
     },
+    loadMoreMovies() {
+      this.currentPage++
+      axios
+        .get(`/api/thrillers?page=${this.currentPage}`)
+        .then((response) => {
+          this.loadedMovies.results = [
+            ...this.loadedMovies.results,
+            ...response.data.results,
+          ]
+        })
+        .catch((error) => console.log(error))
+    },
+  },
+  mounted() {
+    this.loadMovies()
   },
 }
 </script>

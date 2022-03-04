@@ -1,15 +1,15 @@
 <template>
-  <div class="films__list">
-    <article v-for="film of films.results" :key="film.id" class="article">
+  <div class="movies__list">
+    <article v-for="movie of movies.results" :key="movie.id" class="article">
       <div class="article__heading">
-        <h2 class="title">{{ film.title }}</h2>
-        <div class="rating">{{ film.vote_average }} / 10</div>
+        <h2 class="title">{{ movie.title }}</h2>
+        <div class="rating">{{ movie.vote_average }} / 10</div>
       </div>
 
       <div class="article__detail">
-        <img :src="img_prefix + film.poster_path" class="image" />
+        <img :src="img_prefix + movie.poster_path" class="image" />
         <h4 class="overview">
-          {{ film.overview ? film.overview : 'Pas de résumé disponible' }}
+          {{ movie.overview ? movie.overview : 'Pas de résumé disponible' }}
         </h4>
       </div>
     </article>
@@ -20,7 +20,7 @@
 
 export default {
   props: {
-    films: Object
+    movies: Object
   },
   data() {
     return {
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.films__list {
+.movies__list {
   margin: 0 auto;
   width: 80%;
   display: flex;

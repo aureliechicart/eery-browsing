@@ -1,6 +1,6 @@
 /**
 Credit: https://www.netguru.com/blog/infinite-scroll-with-vue.js-and-intersection-observer
-Here we create a trigger component for the infinite scrolling. This component will be rendered below the last film on the list. When it becomes visible to the user, it will trigger the request to load more films.
+Here we create a trigger component for the infinite scrolling. This component will be rendered below the last movie on the list. When it becomes visible to the user, it will trigger the request to load more movies.
 https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API 
 The Intersection Observer API allows you to configure a callback that is called when a target element intersects either the device's viewport or a specified element. That specified element is called the root element or root for the purposes of the Intersection Observer API. */
 
