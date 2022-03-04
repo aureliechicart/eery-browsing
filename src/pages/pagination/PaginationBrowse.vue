@@ -11,7 +11,7 @@
 
         <div class="article__detail">
           <img :src="img_prefix + film.poster_path" class="image" />
-          <h4 class="overview">{{ film.overview }}</h4>
+          <h4 class="overview">{{ film.overview? film.overview : 'Pas de résumé disponible' }}</h4>
         </div>
       </article>
     </div>
@@ -51,7 +51,6 @@ export default {
   },
   methods: {
     onPageChange(page) {
-      console.log(page);
       this.currentPage = page;
       if (this.currentPage === 1) {
         this.films = this.films_one;

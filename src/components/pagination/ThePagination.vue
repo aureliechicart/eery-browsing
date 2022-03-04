@@ -73,7 +73,6 @@ export default {
     // represents the starting number of visible buttons
     startPage() {
       // When the current page is the first one, we show the user the current one and the next ones
-      console.log('currentPage :', this.currentPage)
       if (this.currentPage === 1) {
         return 1
       }
@@ -103,7 +102,6 @@ export default {
           isDisabled: i === this.currentPage,
         })
       }
-      console.log('range :', range)
       return range
     },
     // returns true if user is in first page
