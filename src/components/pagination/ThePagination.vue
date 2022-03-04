@@ -33,7 +33,7 @@
 
     <li class="pagination__item">
       <button type="button" @click="onClickNextPage" :disabled="isInLastPage">
-        <VueFeather size="13"  type="chevron-right" />
+        <VueFeather size="13" type="chevron-right" />
       </button>
     </li>
 
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import VueFeather from 'vue-feather';
+import VueFeather from 'vue-feather'
 
 export default {
   components: { VueFeather },
@@ -158,6 +158,10 @@ export default {
       padding: 0.5rem;
       color: $secondary;
       cursor: pointer;
+
+      &:hover:not(.active) {
+        background-color: $grey;
+      }
     }
 
     .active {

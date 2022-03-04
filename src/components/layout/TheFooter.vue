@@ -14,6 +14,8 @@
 <style lang="scss" scoped>
 .footer {
   background-color: $grey;
+  width: 100%;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;

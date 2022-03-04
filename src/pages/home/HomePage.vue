@@ -1,11 +1,11 @@
 <template>
   <div class="home">
     <h2 class="home__title">
-      Parcourez les thrillers les plus populaires de la manière que vous
-      préférez :
+      Parcourez la liste des thrillers les plus populaires de la manière que vous
+      préférez&nbsp;:
     </h2>
     <div class="home__buttons">
-      <router-link to="/pagination">Pagination</router-link>
+      <router-link to="/pagination">Liste paginée</router-link>
       <router-link to="/infinite-scroll">Infinite Scroll</router-link>
     </div>
   </div>
@@ -21,6 +21,8 @@
 
   &__title {
     font-size: 3rem;
+    width: 50%;
+    text-align: center;
   }
 
   &__buttons {
@@ -41,9 +43,10 @@
       background-color: transparent;
       border-color: $primary;
 
-      a:active,
-      a:hover {
-        border: 1px solid #f391e3;
+      &:hover {
+        border: 1px solid $secondary;
+        color: $secondary;
+        background-color: $light-sec;
       }
     }
   }
