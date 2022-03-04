@@ -4,8 +4,8 @@
 
     <MovieList :movies="loadedMovies" />
     <ThePagination
-      :totalPages="5"
-      :perPage="20"
+      :totalPages="totalPages"
+      :perPage="perPage"
       :currentPage="currentPage"
       @pagechanged="onPageChange" />
   </section>
@@ -25,7 +25,9 @@ export default {
   },
   data() {
     return {
+      totalPages: 500,
       currentPage: 1,
+      perPage: 0,
       loadedMovies: { results: [] },
     }
   },
@@ -35,6 +37,7 @@ export default {
         .get(`/api/thrillers?page=${this.currentPage}`)
         .then((response) => {
           this.loadedMovies = response.data
+          this.perPage = Math.ceil(response.data.total_results/response.data.total_pages); 
         })
         .catch((error) => console.log(error))
     },
