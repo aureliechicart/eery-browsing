@@ -1,0 +1,6 @@
+{
+  "zenMode.hideLineNumbers": false,
+  "eslint.options": {
+    "configFile": "@/client/babel.config.js"
+}
+}
