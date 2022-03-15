@@ -1,7 +1,7 @@
 <template>
   <section class="infinite">
     <h1 class="infinite__heading">Infinite Scroll</h1>
-     <p class="infinite__subheading">Parcourez la liste des thrillers les plus populaires en faisant dérouler la page vers le bas. Dans un premier temps, la page charge 20&nbsp;films. Si vous avez fait défilé jusqu'au 20ème&nbsp;film, nous réinterrogons l'API MovieDB pour charger les 20&nbsp;films suivants.</p>
+     <p class="infinite__subheading">Parcourez la liste des thrillers les plus populaires en faisant dérouler la page vers le bas. Dans un premier temps, la page charge 20&nbsp;films. Si vous avez fait défilé jusqu'au 20ème&nbsp;film, nous réinterrogons l'API TheMovieDB pour charger les 20&nbsp;films suivants.</p>
 
     <MovieList :movies="loadedMovies" />
     <!-- when the intersect event is triggered, we load the next round of movies -->

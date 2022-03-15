@@ -165,12 +165,19 @@ export default {
       color: $secondary;
       cursor: pointer;
 
-      &:hover:not(.active) {
+      &:hover:enabled:not(.active) {
         background-color: $dark-grey;
+      }
+
+      &:disabled:not(.active) {
+        background-color: $grey;
+        border: 1px solid $grey;
+        color: $dark-grey;
+        cursor: not-allowed;
       }
     }
 
-    .active {
+     .active {
       background-color: $primary;
       color: #ffffff;
     }
