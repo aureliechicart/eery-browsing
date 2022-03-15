@@ -160,13 +160,13 @@ export default {
     display: inline-block;
 
     button {
-      border: none;
+      border: 1px solid $light-sec;
       padding: 0.5rem;
       color: $secondary;
       cursor: pointer;
 
       &:hover:not(.active) {
-        background-color: $grey;
+        background-color: $dark-grey;
       }
     }
 
