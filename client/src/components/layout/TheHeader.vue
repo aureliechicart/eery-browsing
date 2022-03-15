@@ -15,6 +15,8 @@
 <style lang="scss" scoped>
 header {
   width: 100%;
+  position: fixed;
+  top: 0;
   height: $nav-height;
   background-color: $primary;
   display: flex;

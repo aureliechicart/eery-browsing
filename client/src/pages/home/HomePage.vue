@@ -14,6 +14,7 @@
 <style lang="scss" scoped>
 .home {
   height: calc(100vh - #{$nav-height} * 2);
+  margin-top: $nav-height;
   display: flex;
   flex-direction: column;
   justify-content: center;

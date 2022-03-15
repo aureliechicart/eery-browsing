@@ -15,11 +15,13 @@
 .footer {
   background-color: $grey;
   width: 100%;
-  position: absolute;
+  height: $nav-height;
+  position: relative;
+  bottom: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 0.5rem;
 
   &__source {
     margin-right: 1rem;

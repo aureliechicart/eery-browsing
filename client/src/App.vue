@@ -1,31 +1,33 @@
 <template>
-  <the-header></the-header>
-  <router-view v-slot="slotProps">
-    <transition name="route" mode="out-in">
-      <component :is="slotProps.Component"></component>
-    </transition>
-  </router-view>
-  <the-footer></the-footer>
+  <div>
+    <TheHeader />
+    <router-view v-slot="slotProps">
+      <transition name="route" mode="out-in">
+        <component :is="slotProps.Component"></component>
+      </transition>
+    </router-view>
+    <TheFooter />
+  </div>
 </template>
 
 <script>
-import TheHeader from './components/layout/TheHeader.vue'
-import TheFooter from './components/layout/TheFooter.vue'
+import TheHeader from "./components/layout/TheHeader.vue";
+import TheFooter from "./components/layout/TheFooter.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     TheHeader,
     TheFooter,
   },
-}
+};
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;700&display=swap');
 
 html {
-  font-family: 'Heebo', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 body {

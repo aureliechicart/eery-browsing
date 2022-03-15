@@ -91,6 +91,7 @@ export default {
 
       .overview {
         font-size: 1rem;
+        font-weight: 300;
         margin: 0 2rem 0 2rem;
       }
     }

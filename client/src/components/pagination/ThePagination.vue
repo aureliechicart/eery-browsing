@@ -1,4 +1,6 @@
-/** Credit: https://www.digitalocean.com/community/tutorials/vuejs-vue-pagination-component */
+/** Credit:
+https://www.digitalocean.com/community/tutorials/vuejs-vue-pagination-component
+*/
 
 <template>
   <ul class="pagination">
@@ -12,7 +14,8 @@
       <button
         type="button"
         @click="onClickPreviousPage"
-        :disabled="isInFirstPage">
+        :disabled="isInFirstPage"
+      >
         <VueFeather size="13" type="chevron-left" />
       </button>
     </li>
@@ -24,9 +27,12 @@
       :key="page.name"
       class="pagination__item"
       @click="onClickPage(page.name)"
-      :disabled="page.isDisabled"
-      :class="{ active: isPageActive(page.name) }">
-      <button type="button" :disabled="page.isDisabled">
+    >
+      <button
+        type="button"
+        :disabled="page.isDisabled"
+        :class="{ active: isPageActive(page.name) }"
+      >
         {{ page.name }}
       </button>
     </li>
@@ -48,7 +54,7 @@
 </template>
 
 <script>
-import VueFeather from 'vue-feather'
+import VueFeather from "vue-feather";
 
 export default {
   components: { VueFeather },
@@ -76,68 +82,68 @@ export default {
     startPage() {
       // When the current page is the first one, we show the user the current one and the next ones
       if (this.currentPage === 1) {
-        return 1
+        return 1;
       }
 
       // When the current page is the last one, let’s show the last page and the previous ones
       if (this.currentPage === this.totalPages) {
-        return this.totalPages - this.maxVisibleButtons
+        return this.totalPages - this.maxVisibleButtons;
       }
 
       // For anything in between we show the previous page and the next one(s)
-      return this.currentPage - 1
+      return this.currentPage - 1;
     },
     // represents the ending number of visible buttons
     endPage() {
       return Math.min(
         this.startPage + this.maxVisibleButtons - 1,
         this.totalPages
-      )
+      );
     },
     // represents an array with a range of visible pages
     pages() {
-      const range = []
+      const range = [];
 
       for (let i = this.startPage; i <= this.endPage; i += 1) {
         range.push({
           name: i,
           isDisabled: i === this.currentPage,
-        })
+        });
       }
-      return range
+      return range;
     },
     // returns true if user is in first page
     // controls the disabled state of the first button
     isInFirstPage() {
-      return this.currentPage === 1
+      return this.currentPage === 1;
     },
     // returns true if user is in last page
     // controls the disabled state of the last button
     isInLastPage() {
-      return this.currentPage === this.totalPages
+      return this.currentPage === this.totalPages;
     },
   },
   methods: {
     onClickFirstPage() {
-      this.$emit('pagechanged', 1)
+      this.$emit("pagechanged", 1);
     },
     onClickPreviousPage() {
-      this.$emit('pagechanged', this.currentPage - 1)
+      this.$emit("pagechanged", this.currentPage - 1);
     },
     onClickPage(page) {
-      this.$emit('pagechanged', page)
+      this.$emit("pagechanged", page);
     },
     onClickNextPage() {
-      this.$emit('pagechanged', this.currentPage + 1)
+      this.$emit("pagechanged", this.currentPage + 1);
     },
     onClickLastPage() {
-      this.$emit('pagechanged', this.totalPages)
+      this.$emit("pagechanged", this.totalPages);
     },
     isPageActive(page) {
-      return this.currentPage === page
+      return this.currentPage === page;
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -146,7 +152,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem 0;
+  padding: 2rem 0;
   margin: 0 auto;
 
   &__item {
