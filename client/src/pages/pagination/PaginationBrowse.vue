@@ -1,7 +1,7 @@
 <template>
   <section class="movies">
     <h1 class="movies__heading">Pagination</h1>
-    <p class="movies__subheading">Parcourez la liste des thrillers les plus populaires en utilisant les boutons de navigation en bas de page.</p>
+    <p class="movies__subheading">Parcourez la liste des thrillers les plus populaires en utilisant les boutons de navigation en bas de page. </p>
     <div v-if="isLoading" class="loader"><BaseSpinner /></div>
     <MovieList v-else :movies="loadedMovies" />
     <ThePagination
