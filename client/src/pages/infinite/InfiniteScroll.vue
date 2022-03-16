@@ -1,7 +1,12 @@
 <template>
   <section class="infinite">
     <h1 class="infinite__heading">Infinite Scroll</h1>
-     <p class="infinite__subheading">Parcourez la liste des thrillers les plus populaires en faisant dérouler la page vers le bas. Dans un premier temps, la page charge 20&nbsp;films. Si vous avez fait défilé jusqu'au 20ème&nbsp;film, nous réinterrogons l'API TheMovieDB pour charger les 20&nbsp;films suivants.</p>
+    <p class="infinite__subheading">
+      Parcourez la liste des thrillers les plus populaires en faisant dérouler
+      la page vers le bas. Dans un premier temps, la page charge 20&nbsp;films.
+      Si vous avez fait défilé jusqu'au 20ème&nbsp;film, nous réinterrogeons
+      l'API TheMovieDB pour charger les 20&nbsp;films suivants.
+    </p>
 
     <MovieList :movies="loadedMovies" />
     <!-- when the intersect event is triggered, we load the next round of movies -->
@@ -12,7 +17,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 
 import MovieList from "../../components/movies/MovieList.vue";
 import IntersectionObserver from "../../components/infinite/IntersectionObserver.vue";
@@ -24,40 +29,41 @@ export default {
   },
   data() {
     return {
-      loadedMovies: { results: [] },
       currentPage: 0,
       endOfList: false,
       isLoading: false,
     };
   },
   methods: {
-    loadMovies() {
+    async loadMovies() {
       this.isLoading = true;
-      axios
-        .get(`/api/thrillers?page=1`)
-        .then((response) => {
-          this.loadedMovies = response.data;
-        })
-        .catch((error) => console.log(error))
-        .finally(() => (this.loading = false));
+      try {
+        await this.$store.dispatch("loadMovies", {page: 1});
+        this.isLoading = false;
+      } catch (error) {
+        console.log(error);
+      }
+
+      this.isLoading = false
     },
-    loadMoreMovies() {
+    async loadMoreMovies() {
       this.isLoading = true;
       this.currentPage++;
-      axios
-        .get(`/api/thrillers?page=${this.currentPage}`)
-        .then((response) => {
-          this.loadedMovies.results = [
-            ...this.loadedMovies.results,
-            ...response.data.results,
-          ];
-        })
-        .catch((error) => console.log(error))
-        .finally(() => (this.loading = false));
+      try {
+        await this.$store.dispatch("loadMoreMovies", { page: this.currentPage});
+      } catch (error) {
+        console.log(error);
+      }
+      this.isLoading = false;
     },
   },
-  mounted() {
+  created() {
     this.loadMovies();
+  },
+  computed: {
+    loadedMovies() {
+      return this.$store.getters["movies"];
+    },
   },
 };
 </script>
@@ -71,7 +77,8 @@ export default {
 
 .infinite {
   margin-top: $nav-height;
-  background: linear-gradient($grey, $secondary);
+  background: linear-gradient(#ffff, $secondary);
+  height: 100%;
 
   &__heading {
     color: $secondary;

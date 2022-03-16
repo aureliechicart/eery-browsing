@@ -11,7 +11,9 @@
       :currentPage="currentPage"
       @pagechanged="onPageChange"
     />
-    <div v-if="isLoading" class="loader"><BaseSpinner /></div>
+    <div v-if="isLoading" class="loader">
+      <BaseSpinner />
+    </div>
     <MovieList v-else :movies="loadedMovies" />
     <ThePagination
       :totalPages="totalPages"
@@ -23,8 +25,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 import MovieList from "../../components/movies/MovieList.vue";
 import ThePagination from "../../components/pagination/ThePagination.vue";
 
@@ -38,31 +38,34 @@ export default {
       totalPages: 500,
       currentPage: 1,
       perPage: 0,
-      loadedMovies: { results: [] },
       isLoading: false,
     };
   },
   methods: {
-    loadMovies() {
+    async loadMovies() {
       this.isLoading = true;
-      axios
-        .get(`/api/thrillers?page=${this.currentPage}`)
-        .then((response) => {
-          this.loadedMovies = response.data;
-          this.perPage = Math.ceil(
-            response.data.total_results / response.data.total_pages
-          );
-        })
-        .catch((error) => console.log(error))
-        .finally(() => (this.isLoading = false));
+      try {
+        await this.$store.dispatch("loadMovies", { page: this.currentPage });
+        this.perPage = Math.ceil(
+          this.loadedMovies.total_results / this.loadedMovies.total_pages
+        );
+      } catch (error) {
+        console.log(error);
+      }
+      this.isLoading = false;
     },
     onPageChange(page) {
       this.currentPage = page;
       this.loadMovies();
     },
   },
-  mounted() {
+  created() {
     this.loadMovies();
+  },
+  computed: {
+    loadedMovies() {
+      return this.$store.getters["movies"];
+    },
   },
 };
 </script>
@@ -71,6 +74,8 @@ export default {
 .loader {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: calc(100vh - #{$nav-height} * 6.25);
 }
 
 .movies {
