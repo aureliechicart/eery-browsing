@@ -7,6 +7,10 @@ Small application to browse a list of thriller movies in two ways: paginalted li
 Based on TheMovieDB API.
 Vue front-end + Node backend.
 
+![Image 1](client/src/assets/images/eery.jpg)
+
+![Image 2](client/src/assets/images/eery_2.jpg)
+
 ## Project details 🔍
 
 ## Stack :wrench:
@@ -103,3 +107,7 @@ cd server && npm run dev
 ```
 
 To access the app, go to `http://localhost:8080`.
+
+### Heroku deployment
+
+Access a deployed version at `https://eery-browsing.herokuapp.com/`.
